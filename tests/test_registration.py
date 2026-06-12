@@ -1,7 +1,7 @@
-from playwright.sync_api import Page, expect
+from playwright.sync_api import expect
 
 
-def test_successful_registration(chromium_page: Page):
+def test_successful_registration(chromium_page):
     chromium_page.goto('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration')
 
     email_input = chromium_page.get_by_test_id('registration-form-email-input').locator('input')
