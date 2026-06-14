@@ -19,14 +19,18 @@ def registration_page(chromium_page: Page) -> RegistrationPage:
 
 
 @pytest.fixture
-def dashboard_page(chromium_page: Page) -> DashboardPage:
-    return DashboardPage(page=chromium_page)
-
-@pytest.fixture
 def courses_list_page(chromium_page_with_state: Page) -> CoursesListPage:
     return CoursesListPage(page=chromium_page_with_state)
-
 
 @pytest.fixture
 def create_course_page(chromium_page_with_state: Page) -> CreateCoursePage:
     return CreateCoursePage(page=chromium_page_with_state)
+
+
+@pytest.fixture
+def dashboard_page(chromium_page: Page) -> DashboardPage:
+    return DashboardPage(page=chromium_page)
+
+@pytest.fixture
+def dashboard_page_with_state(chromium_page_with_state: Page) -> DashboardPage:
+    return DashboardPage(page=chromium_page_with_state)
