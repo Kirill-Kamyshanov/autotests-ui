@@ -14,14 +14,8 @@ class CoursesListPage(BasePage):
 
         self.sidebar = SidebarComponent(page)
         self.navbar = NavbarComponent(page)
-
-        # Заголовок и кнопка создания курса
         self.toolbar_view = CoursesListToolbarViewComponent(page)
-
-        # Пустой блок при отсутствии курсов
         self.empty_view = EmptyViewComponent(page, 'courses-list')
-
-        # Карточка курса
         self.course_view = CourseViewComponent(page)
 
     def check_visible_empty_view(self):
