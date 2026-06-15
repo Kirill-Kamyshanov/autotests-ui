@@ -1,5 +1,5 @@
 import pytest
-from pages.login_page import LoginPage
+from pages.authentification.login_page import LoginPage
 
 
 @pytest.mark.regression
