@@ -1,3 +1,5 @@
+import allure
+
 from components.base_component import BaseComponent
 from playwright.sync_api import Page
 from elements.button import Button
@@ -15,6 +17,7 @@ class CreateCourseExercisesToolbarViewComponent(BaseComponent):
             page, 'create-course-exercises-box-toolbar-create-exercise-button', "Create_exercise"
         )
 
+    @allure.step('Check visible create course exercise toolbar')
     def check_visible(self):
         self.create_exercise_button.check_visible()
 
