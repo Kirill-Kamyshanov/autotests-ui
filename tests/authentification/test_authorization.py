@@ -24,6 +24,7 @@ from config import settings
 @allure.tag(AllureTag.REGRESSION, AllureTag.AUTHORIZATION)
 class TestAuthorization:
 
+    @pytest.mark.xdist_group(name="authorization-group")
     @pytest.mark.parametrize(
         "email, password",
         [
