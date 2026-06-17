@@ -37,9 +37,11 @@ class Settings(BaseSettings):
     tracing_dir: DirectoryPath
     browser_state_file: FilePath
 
+    def get_base_url(self) -> str:
+        return f"{self.app_url}/"
+
     @classmethod
     def initialize(cls) -> Self:
-        # Указываем пути
         videos_dir = DirectoryPath("./videos")
         tracing_dir = DirectoryPath("./tracing")
         browser_state_file = FilePath("browser-state.json")
@@ -52,7 +54,6 @@ class Settings(BaseSettings):
             tracing_dir=tracing_dir,
             browser_state_file=browser_state_file
         )
-
 
 
 settings = Settings.initialize()
