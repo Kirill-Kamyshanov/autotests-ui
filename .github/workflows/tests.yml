@@ -49,9 +49,12 @@ jobs: # Определяем все шаги, которые должны быт
       - name: Generates Allure Report with history
         uses: simple-elf/allure-report-action@v1.14  # Используем готовое решение из GitHub Marketplace для генерации Allure отчёта
         if: always()  # Этот шаг тоже всегда выполняется
+        id: allure-report
         with:
           allure_results: allure-results  # Указываем каталог с результатами тестов
           allure_history: allure-history  # Указываем каталог для истории отчётов Allure
+          gh_pages: gh-pages
+          allure_report: allure-report
 
       # 7. Шаг для деплоя отчёта Allure на GitHub Pages, чтобы его можно было просматривать в браузере
       - name: Deploy report to Github Pages
