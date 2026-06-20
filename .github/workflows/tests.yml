@@ -62,5 +62,5 @@ jobs: # Определяем все шаги, которые должны быт
         uses: peaceiris/actions-gh-pages@v4  # Используем GitHub Action для публикации отчёта на GitHub Pages
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}  # Токен для аутентификации на GitHub
-          publish_branch: gh-pages  # Указываем, что о тчёт будет опубликован в ветке gh-pages
+          publish_branch: gh-pages  # Указываем, что о  тчёт будет опубликован в ветке gh-pages
           publish_dir: allure-history  # Указываем папку, которая будет опубликована на GitHub Pages
