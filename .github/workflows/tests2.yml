@@ -13,25 +13,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Клонируем репозиторий на виртуальную машину
       - name: Check out repository
         uses: actions/checkout@v4
 
+      # Устанавливаем Python
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
 
+      # Устанавливаем зависимости проекта (pip + браузеры Playwright)
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           playwright install --with-deps
 
+      # Запускаем тесты
       - name: Run Playwright tests with pytest and generate Allure results
         run: |
           pytest -m regression --alluredir=allure-results --numprocesses 2
 
-      # Восстанавливаем историю покрытия из кеша
+      # Восстанавливаем историю покрытия из кеша для сохранения истории между запусками
       - name: Restore Coverage history
         uses: actions/cache/restore@v4
         with:
@@ -53,7 +57,7 @@ jobs:
           path: coverage-history.json
           key: coverage-history-${{ github.run_id }}
 
-      # Загружаем HTML-отчет как артефакт
+      # Загружаем HTML-отчет покрытия как артефакт
       - name: Upload Coverage report
         if: always()
         uses: actions/upload-artifact@v4
@@ -61,7 +65,7 @@ jobs:
           name: coverage-report
           path: coverage.html
 
-
+      # Загружаем allure-результаты
       - name: Upload Allure results
         if: always()
         uses: actions/upload-artifact@v4
@@ -76,18 +80,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Скачиваем репозиторий
       - name: Check out repository
         uses: actions/checkout@v4
         with:
           ref: gh-pages
           path: gh-pages
 
+      # Скачиваем allure-результаты
       - name: Download Allure results
         uses: actions/download-artifact@v4
         with:
           name: allure-results
           path: allure-results
 
+      # Генерируем allure-отчёт с историей
       - name: Generates Allure Report with history
         uses: simple-elf/allure-report-action@v1.13
         if: always()
@@ -95,6 +102,7 @@ jobs:
           allure_results: allure-results
           allure_history: allure-history
 
+      # Выкладываем allure-отчёт на Github Pages
       - name: Deploy report to Github Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v4
