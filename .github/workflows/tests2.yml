@@ -44,7 +44,7 @@ jobs:
           restore-keys: |
             coverage-history-
 
-      # Генерируем HTML-отчет и обновляем историю
+      # Генерируем HTML-отчет о покрытии и обновляем историю
       - name: Generate Coverage report
         run: |
           ui-coverage-tool save-report
